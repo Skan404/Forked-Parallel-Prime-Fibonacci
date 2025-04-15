@@ -40,7 +40,7 @@ int process_range(int start, int end) {
 int main() {
     auto start_time = high_resolution_clock::now();
 
-    const int range = 1000000; // Uwzglêdniamy ograniczenie dla celów demonstracyjnych
+    const int range = 1000000;
     const int segments = 7;
     const int per_child_range = range / segments;
     int total_count = 0;
@@ -51,7 +51,7 @@ int main() {
             int start = i * per_child_range + 1;
             int end = (i + 1) * per_child_range;
             if (i == segments - 1) {
-                end = range; // Upewnij siê, ¿e ostatni proces obejmuje ca³y zakres.
+                end = range; 
             }
             int found = process_range(start, end);
             cout << "Process " << i << " found " << found << " numbers." << endl;
@@ -59,7 +59,6 @@ int main() {
         }
     }
 
-    // Proces g³ówny czeka na procesy potomne i agreguje wyniki
     int status;
     for (int i = 0; i < segments; ++i) {
         pid_t pid = wait(&status);
